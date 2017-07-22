@@ -1,0 +1,17 @@
+1)login on https://developers.facebook.com/ and get a app id from it
+					
+						Settings of developers.facebook
+
+2)(Valid OAuth redirect URIs)
+	add your page uri on it ex=>(http://localhost/indez.html)
+
+
+3)Settings (Facebook login section)
+	Embedded Browser OAuth Login 		(Yes)
+	Web OAuth login                 	(Yes)			
+	Client OAuth login              	(Yes)
+	Force Web OAuth Reauthentication	(No)
+	Login from Devices					(No)
+
+4)Important! 
+	if you try this on localhost it will run fine...but if you want to run on live website you want to unable the App review (Yes)

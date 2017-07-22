@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<a  onclick="login()" id="fblog" href="#" >
+    <span></span> Sign in with Facebook
+</a>
+
+<script type="text/javascript">
+    var url = document.location.href;     
+        // initialize and setup facebook js sdk
+    
+        window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '**************',//get it from facebook developer site
+              xfbml      : true,
+              version    : 'v2.5'
+            });
+        
+            if(url == "http://xyz.html")
+                //if you want give a direct link on any facebook blog....user will directly enter to you'r website ex=>(link=http://xyz.html) 
+            {
+            
+                 FB.getLoginStatus(function(response) {
+                        if (response.status === 'connected') {
+                            getInfo();
+                        } else if (response.status === 'not_authorized') {
+                            document.getElementById('status').innerHTML = 'We are not logged in.'
+                        } else {
+                            document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
+                        }
+                    });         
+                            
+            }
+
+        };
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        
+        // login with facebook with extra permissions
+        // when new user will come this function will run 
+        function login() {
+            FB.login(function(response) {
+                if (response.status === 'connected') {
+          
+                    getInfo();
+
+                } else if (response.status === 'not_authorized') {
+                    document.getElementById('status').innerHTML = 'We are not logged in.'
+                } else {
+                    document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
+                }
+            }, {scope: 'email'});
+            
+            
+        }
+        
+        // getting basic user info
+        function getInfo() {
+            FB.api('/me', 'GET', 
+                {fields:'first_name,last_name,name,id,gender,email'},
+                function(response) {
+                
+                var first_name = response.first_name;
+               // var F_LN = response.last_name;
+                //var F_N = response.name;
+                //var F_ID = response.id;
+                //var F_G = response.gender;
+                //var F_E = response.email;
+            
+                window.location.href = 'show.php?f_n=' + first_name ; 
+
+                    // you can transfer multiple value 
+                       // window.location.href = 'save.php?f_n=' + F_FN + '&l_n=' + F_LN + '&n=' + F_N + '&id=' + F_ID + '&g=' + F_G +  '&e=' + F_E; 
+                        
+                            });
+        }
+    </script>
+</body>
+</html>
