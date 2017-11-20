@@ -3,7 +3,7 @@
 						Settings of developers.facebook
 
 2)(Valid OAuth redirect URIs)
-	add your page uri on it ex=>(http://localhost/indez.html)
+	add your page uri on it ex=>(http://localhost/index.html)
 
 
 3)Settings (Facebook login section)
